@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 255 255 255;
+    --bg-subtle: 247 250 244;
+    --surface: 255 255 255;
+    --border: 230 234 224;
+    --text: 30 35 25;
+    --text-muted: 110 120 100;
+  }
+
+  .dark {
+    --bg: 18 22 14;
+    --bg-subtle: 24 29 18;
+    --surface: 28 34 21;
+    --border: 45 53 35;
+    --text: 237 241 230;
+    --text-muted: 160 170 148;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: rgb(var(--bg));
+    color: rgb(var(--text));
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Visible keyboard focus everywhere, for accessibility */
+  :focus-visible {
+    outline: 2px solid #74a346;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: #c9deb1;
+  }
+}
+
+@layer components {
+  .surface {
+    background-color: rgb(var(--surface));
+    border: 1px solid rgb(var(--border));
+  }
+
+  .text-muted {
+    color: rgb(var(--text-muted));
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-matcha-500 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-matcha-600 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-matcha-200 bg-matcha-50 px-4 py-2.5 text-sm font-medium text-matcha-700 transition hover:bg-matcha-100 active:scale-[0.98] dark:bg-transparent dark:border-matcha-800 dark:text-matcha-300 dark:hover:bg-matcha-950;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted transition hover:bg-matcha-50 dark:hover:bg-white/5;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none transition placeholder:text-muted;
+    background-color: rgb(var(--surface));
+    border-color: rgb(var(--border));
+    color: rgb(var(--text));
+  }
+
+  .input-field:focus {
+    border-color: #74a346;
+    box-shadow: 0 0 0 3px rgba(116, 163, 70, 0.15);
+  }
+
+  .card {
+    @apply surface rounded-2xl shadow-card;
+  }
+}
+
+/* Custom scrollbar, matcha-tinted */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c9deb1;
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #46652c;
+}
